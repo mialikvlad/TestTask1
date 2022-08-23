@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class BitbucketRepoOwner(
     @SerializedName("nickname")
-    val name: String,
-    val links: BitbucketOwnerLinks
+    val name: String?,
+    val links: BitbucketOwnerLinks,
+    @SerializedName("display_name")
+    val displayName: String
 )
