@@ -24,6 +24,11 @@
         android:id="@+id/repository_details"
         android:name="com.example.examapp.users.details.RepositoryDetailsFragment"
         android:label="fragment_repository_details"
-        tools:layout="@layout/fragment_repository_details" />
+        tools:layout="@layout/fragment_repository_details">
+
+        <argument
+            android:name="repoDescription"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

@@ -16,4 +16,5 @@ class RepositoryListViewModel @Inject constructor(
     val getBitbucketRepositoriesUseCase: GetBitbucketRepositoriesUseCase
 ) : ViewModel() {
 
+    suspend fun getRepos() = getBitbucketRepositoriesUseCase()
 }
