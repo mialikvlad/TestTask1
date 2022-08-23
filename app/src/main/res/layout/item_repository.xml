@@ -12,19 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.github.siyamed.shapeimageview.RoundedImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/image_user"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:siRadius="10dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:riv_corner_radius="10dp"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/text_repository"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/image_user"
             app:layout_constraintTop_toTopOf="@id/image_user"
             android:textSize="16sp"
@@ -34,6 +36,7 @@
             android:id="@+id/text_user_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/text_repository"
             app:layout_constraintStart_toEndOf="@id/image_user"
             app:layout_constraintTop_toBottomOf="@id/text_repository"
             android:textSize="16sp"
@@ -44,8 +47,10 @@
             android:layout_height="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/logo_vsc" />
+            android:contentDescription="@string/logo_vsc"
+            tools:src="@tools:sample/avatars"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
