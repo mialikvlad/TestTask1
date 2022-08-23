@@ -72,4 +72,9 @@ dependencies {
 
     //ViewModelScope
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+
+    //shape image view
+    implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
