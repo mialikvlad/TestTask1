@@ -36,6 +36,6 @@
             android:clipToPadding="false"
             android:padding="10dp"
             tools:itemCount="15"
-            tools:listitem="@layout/item_user" />
+            tools:listitem="@layout/item_repository" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
