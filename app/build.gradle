@@ -60,14 +60,14 @@ dependencies {
     def lifecycleVersion = "2.5.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
-    implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-compiler:2.38.1"
+    implementation 'com.google.dagger:hilt-android:2.43.2'
+    kapt 'com.google.dagger:hilt-compiler:2.43.2'
 
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:3.1.1"
 
     //Coil(image library)
-    implementation "io.coil-kt:coil:2.1.0"
+    implementation 'io.coil-kt:coil:2.2.0'
 
     //ViewModelScope
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
