@@ -2,6 +2,6 @@ package com.example.data.model.bitbucket
 
 data class BitbucketRepo(
     val name: String,
-    val reposOwner: BitbucketRepoOwner,
+    val owner: BitbucketRepoOwner,
     val description: String?
 )

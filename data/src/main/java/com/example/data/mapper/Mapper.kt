@@ -20,9 +20,9 @@ fun GithubRepo.toDomainModel(): RepositoryModel{
 
 fun BitbucketRepo.toDomainModel(): RepositoryModel{
     return RepositoryModel(
-        ownerAvatar = reposOwner.links.avatar.href,
+        ownerAvatar = owner.links.avatar.href,
         repositoryName = name,
-        ownerName = reposOwner.name,
+        ownerName = owner.name ?: owner.displayName,
         webService = BITBUCKET,
         description = description ?: EMPTY_DESCRIPTION
     )
