@@ -7,12 +7,12 @@ import com.example.domain.repository.BitbucketRepository
 
 class BitbucketRepositoryImpl(
     private val bitbucketApi: BitbucketApi
-) : BitbucketRepository{
+) : BitbucketRepository {
 
     override suspend fun getRepositories(): List<RepositoryModel> {
         val response = bitbucketApi.getRepositories(VALUES)
 
-        return if(response.isSuccessful){
+        return if (response.isSuccessful) {
             val repoList = response.body()?.values ?: throw Exception(NULL_BODY)
             repoList.map { repo ->
                 repo.toDomainModel()

@@ -11,21 +11,21 @@
     <item
         android:id="@+id/all_repos"
         android:title="@string/all_repositories"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
         android:id="@+id/filter_github"
         android:title="@string/github_only"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
         android:id="@+id/filter_bitbucket"
         android:title="@string/bitbucket_only"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
         android:id="@+id/sort_alphabetically"
         android:title="@string/sort_alphabetically"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
         android:id="@+id/sort_revert"
         android:title="@string/sort_revert"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 </menu>

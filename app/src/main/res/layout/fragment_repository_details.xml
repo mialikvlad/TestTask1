@@ -26,26 +26,23 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/owner_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/detail_avatar_size"
+        android:layout_height="@dimen/detail_avatar_size"
         android:layout_marginStart="30dp"
         android:layout_marginTop="90dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:riv_corner_radius="10dp"
+        app:riv_corner_radius="@dimen/item_avatar_radius"
         tools:src="@tools:sample/avatars" />
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/webservice_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="90dp"
+        android:layout_width="@dimen/detail_icon_size"
+        android:layout_height="@dimen/detail_icon_size"
         android:layout_marginEnd="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/owner_image"
-        app:riv_corner_radius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/owner_image"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -63,7 +60,6 @@
         style="@style/TitleDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/repository"
         app:layout_constraintStart_toStartOf="@id/owner_image"
         app:layout_constraintTop_toBottomOf="@id/title_name" />
@@ -73,7 +69,6 @@
         style="@style/TitleDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/webservice"
         app:layout_constraintStart_toStartOf="@id/owner_image"
         app:layout_constraintTop_toBottomOf="@id/title_repository" />
@@ -83,7 +78,6 @@
         style="@style/TitleDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/description"
         app:layout_constraintStart_toStartOf="@id/owner_image"
         app:layout_constraintTop_toBottomOf="@id/title_webservice" />
@@ -126,7 +120,7 @@
         <TextView
             android:id="@+id/text_description"
             style="@style/TextDescription"
-            android:layout_width="250dp"
+            android:layout_width="@dimen/detail_description_width"
             android:layout_height="wrap_content"
             tools:text="I'm not sure how you could possibly get either of those values. 12 + 23 = 35. How in the world you are getting 421 and 606 is beyond me. Maybe confirm what you typed in your question and then I'll see if I can help. Await on an async is typically replaced with withContext(yourProviderThread){} and then no await is required, but either way async { someMethod }.await() is acceptable, if you don't await in line, then you can easily do one.await() + two.await() and that should give the same value as well. But hard to speculate when your output doesn't line up" />
     </ScrollView>
