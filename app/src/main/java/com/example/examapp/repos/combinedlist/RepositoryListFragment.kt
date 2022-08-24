@@ -1,4 +1,4 @@
-package com.example.examapp.users.combinedlist
+package com.example.examapp.repos.combinedlist
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.examapp.base.BaseFragment
 import com.example.examapp.databinding.FragmentRepositoryListBinding
-import com.example.examapp.users.adapter.RepoAdapter
+import com.example.examapp.repos.adapter.RepoAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -21,7 +21,11 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
         RepoAdapter { repoModel ->
             findNavController().navigate(
                 RepositoryListFragmentDirections.toRepositoryDetails(
-                    repoModel.description
+                    repoModel.description,
+                    repoModel.ownerName,
+                    repoModel.repositoryName,
+                    repoModel.webService,
+                    repoModel.ownerAvatar
                 )
             )
         }

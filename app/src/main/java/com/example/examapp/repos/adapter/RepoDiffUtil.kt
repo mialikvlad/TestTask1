@@ -1,4 +1,4 @@
-package com.example.examapp.users.adapter
+package com.example.examapp.repos.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.domain.model.RepositoryModel

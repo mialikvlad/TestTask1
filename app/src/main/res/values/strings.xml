@@ -3,4 +3,8 @@
     <string name="logo_vsc">logo_vsc</string>
     <string name="search">Search</string>
     <string name="repositories">Repositories</string>
+    <string name="name">Name:</string>
+    <string name="repository">Repository:</string>
+    <string name="webservice">WebService:</string>
+    <string name="description">Description:</string>
 </resources>
