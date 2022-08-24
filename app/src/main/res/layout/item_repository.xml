@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/image_user"
+            android:id="@+id/owner_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,8 +27,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/image_user"
-            app:layout_constraintTop_toTopOf="@id/image_user"
+            app:layout_constraintStart_toEndOf="@id/owner_image"
+            app:layout_constraintTop_toTopOf="@id/owner_image"
             android:textSize="16sp"
             tools:text="Some text"/>
 
@@ -37,12 +37,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/text_repository"
-            app:layout_constraintStart_toEndOf="@id/image_user"
+            app:layout_constraintStart_toEndOf="@id/owner_image"
             app:layout_constraintTop_toBottomOf="@id/text_repository"
             android:textSize="16sp"
             tools:text="Some text"/>
 
         <ImageView
+            android:id="@+id/service_image"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:layout_constraintEnd_toEndOf="parent"
