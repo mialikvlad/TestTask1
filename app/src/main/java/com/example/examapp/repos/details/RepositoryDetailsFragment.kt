@@ -11,7 +11,6 @@ import coil.size.ViewSizeResolver
 import com.example.examapp.R
 import com.example.examapp.base.BaseFragment
 import com.example.examapp.databinding.FragmentRepositoryDetailsBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 class RepositoryDetailsFragment : BaseFragment<FragmentRepositoryDetailsBinding>() {
 
@@ -23,7 +22,7 @@ class RepositoryDetailsFragment : BaseFragment<FragmentRepositoryDetailsBinding>
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             toolbar.setupWithNavController(findNavController())
-            ownerImage.load(viewModel.getAvatarUrl()){
+            ownerImage.load(viewModel.getAvatarUrl()) {
                 scale(Scale.FIT)
                 size(ViewSizeResolver(root))
             }

@@ -13,18 +13,24 @@ import com.example.examapp.databinding.ItemRepositoryBinding
 
 class RepoAdapter(
     private val onItemClicked: (RepositoryModel) -> Unit
-) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>(){
+) : RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
 
-    class RepoViewHolder(val binding: ItemRepositoryBinding): RecyclerView.ViewHolder(binding.root)
+    class RepoViewHolder(val binding: ItemRepositoryBinding) : RecyclerView.ViewHolder(binding.root)
 
     private var oldRepoList = emptyList<RepositoryModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
-        return RepoViewHolder(ItemRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return RepoViewHolder(
+            ItemRepositoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
-        with(holder.binding){
+        with(holder.binding) {
             ownerImage.load(oldRepoList[position].ownerAvatar) {
                 scale(Scale.FIT)
                 size(ViewSizeResolver(root))
@@ -46,7 +52,7 @@ class RepoAdapter(
         return oldRepoList.size
     }
 
-    fun setData(newRepoList: List<RepositoryModel>){
+    fun setData(newRepoList: List<RepositoryModel>) {
         val diffUtil = RepoDiffUtil(oldRepoList, newRepoList)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         oldRepoList = newRepoList

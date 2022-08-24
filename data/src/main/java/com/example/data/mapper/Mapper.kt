@@ -8,7 +8,7 @@ private const val EMPTY_DESCRIPTION = "There is no info"
 private const val GITHUB = "Github"
 private const val BITBUCKET = "Bitbucket"
 
-fun GithubRepo.toDomainModel(): RepositoryModel{
+fun GithubRepo.toDomainModel(): RepositoryModel {
     return RepositoryModel(
         ownerAvatar = owner.avatarUrl,
         repositoryName = repositoryName,
@@ -18,7 +18,7 @@ fun GithubRepo.toDomainModel(): RepositoryModel{
     )
 }
 
-fun BitbucketRepo.toDomainModel(): RepositoryModel{
+fun BitbucketRepo.toDomainModel(): RepositoryModel {
     return RepositoryModel(
         ownerAvatar = owner.links.avatar.href,
         repositoryName = name,

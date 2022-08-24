@@ -12,6 +12,8 @@ import com.example.examapp.base.BaseFragment
 import com.example.examapp.databinding.FragmentRepositoryListBinding
 import com.example.examapp.repos.adapter.RepoAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -61,16 +63,13 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
 
     override fun getViewBinding() = FragmentRepositoryListBinding.inflate(layoutInflater)
 
+    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.listRepo.observe(viewLifecycleOwner) { repoList ->
             adapter.setData(repoList)
         }
-
-        /*viewModel.successState.observe(viewLifecycleOwner){ state ->
-            binding.progress.isVisible = !state
-        }*/
 
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())

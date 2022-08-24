@@ -22,15 +22,10 @@ class RepositoryListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var responseRepoList = mutableListOf<RepositoryModel>()
-    private val queryFlow = MutableStateFlow("")
 
     private val _listRepo: MutableLiveData<List<RepositoryModel>> = MutableLiveData()
     val listRepo: LiveData<List<RepositoryModel>>
         get() = _listRepo
-
-    private val _successState: MutableLiveData<Boolean> = MutableLiveData(false)
-    val successState: LiveData<Boolean>
-        get() = _successState
 
     init {
         viewModelScope.launch {
@@ -45,7 +40,6 @@ class RepositoryListViewModel @Inject constructor(
         responseRepoList.addAll(bitbucketRepoList.await())
         responseRepoList.addAll(githubRepoList.await())
         _listRepo.value = responseRepoList
-        _successState.value = true
     }
 
     fun filterOnlyGithubRepos() {
