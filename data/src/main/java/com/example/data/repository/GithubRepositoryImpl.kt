@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 
+import android.widget.Toast
 import com.example.data.mapper.toDomainModel
 import com.example.data.service.GithubApi
 import com.example.domain.model.RepositoryModel
@@ -20,6 +21,7 @@ class GithubRepositoryImpl(
             }
         } else {
             throw checkErrorCode(response.code())
+            /*Toast.makeText(context, "Github is overloaded", 3000)*/
         }
     }
 
