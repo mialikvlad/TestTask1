@@ -2,7 +2,9 @@ package com.example.examapp.repos.combinedlist
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.examapp.R
@@ -10,6 +12,9 @@ import com.example.examapp.base.BaseFragment
 import com.example.examapp.databinding.FragmentRepositoryListBinding
 import com.example.examapp.repos.adapter.RepoAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
@@ -30,18 +35,53 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
         }
     }
 
+    private val searchQueryFlow: Flow<String>
+        get() = callbackFlow {
+            val searchView =
+                binding.toolbar.menu.findItem(R.id.action_search).actionView as SearchView
+
+            val queryTextListener = object : SearchView.OnQueryTextListener {
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    trySend(newText)
+                    return true
+                }
+            }
+
+            searchView.setOnQueryTextListener(queryTextListener)
+
+            awaitClose {
+                searchView.setOnQueryTextListener(null)
+            }
+        }
+
     override fun getViewBinding() = FragmentRepositoryListBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.listRepo.observe(viewLifecycleOwner){ repoList ->
+        viewModel.listRepo.observe(viewLifecycleOwner) { repoList ->
             adapter.setData(repoList)
         }
+
+        /*viewModel.successState.observe(viewLifecycleOwner){ state ->
+            binding.progress.isVisible = !state
+        }*/
 
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = adapter
+
+            layoutSwipeRefresh.setOnRefreshListener {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewModel.reloadRepos()
+                    layoutSwipeRefresh.isRefreshing = false
+                }
+            }
 
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
@@ -68,6 +108,14 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
                     else -> false
                 }
             }
+
+            //TODO: doesn't work correctly
+            searchQueryFlow
+                .debounce(1000)
+                .flatMapLatest { query ->
+                    viewModel.searchByQuery(query)
+                }
+                .launchIn(viewLifecycleOwner.lifecycleScope)
         }
     }
 }
