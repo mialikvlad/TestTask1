@@ -1,4 +1,4 @@
-package com.example.examapp.users.combinedlist
+package com.example.examapp.repos.combinedlist
 
 import androidx.lifecycle.ViewModel
 import com.example.domain.model.RepositoryModel

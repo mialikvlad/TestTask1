@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/list_repository_fragment"
-        android:name="com.example.examapp.users.combinedlist.RepositoryListFragment"
+        android:name="com.example.examapp.repos.combinedlist.RepositoryListFragment"
         android:label="fragment_repository_list"
         tools:layout="@layout/fragment_repository_list">
 
@@ -22,12 +22,24 @@
 
     <fragment
         android:id="@+id/repository_details"
-        android:name="com.example.examapp.users.details.RepositoryDetailsFragment"
-        android:label="fragment_repository_details"
+        android:name="com.example.examapp.repos.details.RepositoryDetailsFragment"
+        android:label="Info"
         tools:layout="@layout/fragment_repository_details">
 
         <argument
             android:name="repoDescription"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="repository"
+            app:argType="string" />
+        <argument
+            android:name="webservice"
+            app:argType="string" />
+        <argument
+            android:name="avatarUrl"
             app:argType="string" />
     </fragment>
 

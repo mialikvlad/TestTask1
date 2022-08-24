@@ -1,12 +1,4 @@
-package com.example.examapp.users.adapter
-
-import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.size.Scale
-import coil.size.ViewSizeResolver
-import com.example.domain.model.RepositoryModel
-import com.example.examapp.R
-import com.example.examapp.databinding.ItemRepositoryBinding
+package com.example.examapp.repos.adapter
 
 /*
 class RepoViewHolder(
