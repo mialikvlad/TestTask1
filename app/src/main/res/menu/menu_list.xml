@@ -9,6 +9,10 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
     <item
+        android:id="@+id/all_repos"
+        android:title="@string/all_repositories"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/filter_github"
         android:title="@string/github_only"
         app:showAsAction="never"/>

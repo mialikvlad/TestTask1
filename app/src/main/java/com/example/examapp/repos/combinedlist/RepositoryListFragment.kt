@@ -52,6 +52,10 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 // Handle the menu selection
                 return when (menuItem.itemId) {
+                    R.id.all_repos -> {
+                        // clearCompletedTasks()
+                        true
+                    }
                     R.id.filter_github -> {
                         // clearCompletedTasks()
                         true

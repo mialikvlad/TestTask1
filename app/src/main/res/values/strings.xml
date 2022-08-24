@@ -11,4 +11,5 @@
     <string name="repository">Repository:</string>
     <string name="webservice">WebService:</string>
     <string name="description">Description:</string>
+    <string name="all_repositories">All Repositories</string>
 </resources>
