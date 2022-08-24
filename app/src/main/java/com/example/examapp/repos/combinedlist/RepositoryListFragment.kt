@@ -3,7 +3,6 @@ package com.example.examapp.repos.combinedlist
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -112,8 +111,9 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
 
             //TODO: doesn't work correctly
             searchQueryFlow
+                .debounce(1000)
                 .flatMapLatest { query ->
-                    viewModel.searchByOwnerName(query)
+                    viewModel.searchByQuery(query)
                 }
                 .launchIn(viewLifecycleOwner.lifecycleScope)
         }

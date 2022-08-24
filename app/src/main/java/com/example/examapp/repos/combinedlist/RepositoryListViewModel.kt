@@ -12,6 +12,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -77,9 +78,11 @@ class RepositoryListViewModel @Inject constructor(
         }
     }
 
-    fun searchByOwnerName(query: String): Flow<String> {
+    fun searchByQuery(query: String): Flow<String> {
         _listRepo.value = _listRepo.value?.filter { repositoryModel ->
-            repositoryModel.ownerName.contains(query)
+            repositoryModel.ownerName.lowercase(Locale.ROOT).contains(query) ||
+                    repositoryModel.repositoryName.lowercase(Locale.ROOT).contains(query) ||
+                    repositoryModel.webService.lowercase(Locale.ROOT).contains(query)
         }
         return flow { }
     }

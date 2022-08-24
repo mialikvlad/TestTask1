@@ -38,6 +38,7 @@ class RepoAdapter(
             root.setOnClickListener {
                 onItemClicked(oldRepoList[position])
             }
+            textRepository.isSelected = true
         }
     }
 
