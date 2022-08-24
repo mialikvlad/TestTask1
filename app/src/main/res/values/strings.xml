@@ -3,4 +3,8 @@
     <string name="logo_vsc">logo_vsc</string>
     <string name="search">Search</string>
     <string name="repositories">Repositories</string>
+    <string name="github_only">Github Only</string>
+    <string name="bitbucket_only">Bitbucket Only</string>
+    <string name="sort_alphabetically">Sort Alphabetically</string>
+    <string name="sort_revert">Sort Revert</string>
 </resources>
