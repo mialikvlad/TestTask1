@@ -3,6 +3,7 @@ package com.example.examapp.repos.combinedlist
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -69,6 +70,10 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
 
         viewModel.listRepo.observe(viewLifecycleOwner) { repoList ->
             adapter.setData(repoList)
+        }
+
+        viewModel.circleProgressState.observe(viewLifecycleOwner) { progressState ->
+            binding.progress.isVisible = progressState
         }
 
         with(binding) {

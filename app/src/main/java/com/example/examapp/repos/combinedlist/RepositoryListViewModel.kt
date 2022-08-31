@@ -8,10 +8,8 @@ import com.example.domain.model.RepositoryModel
 import com.example.domain.usecases.GetBitbucketRepositoriesUseCase
 import com.example.domain.usecases.GetGithubRepositoriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.util.*
 import javax.inject.Inject
 
@@ -27,19 +25,25 @@ class RepositoryListViewModel @Inject constructor(
     val listRepo: LiveData<List<RepositoryModel>>
         get() = _listRepo
 
+    private val _circleProgressState: MutableLiveData<Boolean> = MutableLiveData()
+    val circleProgressState: LiveData<Boolean>
+        get() = _circleProgressState
+
     init {
+        _circleProgressState.value = true
         viewModelScope.launch {
             initRepos()
         }
     }
 
-    private suspend fun initRepos() = runBlocking {
+    private suspend fun initRepos() = withContext(Dispatchers.IO) {
         responseRepoList = mutableListOf()
         val githubRepoList = async { getGithubRepositoriesUseCase() }
         val bitbucketRepoList = async { getBitbucketRepositoriesUseCase() }
         responseRepoList.addAll(bitbucketRepoList.await())
         responseRepoList.addAll(githubRepoList.await())
-        _listRepo.value = responseRepoList
+        _circleProgressState.postValue(false)
+        _listRepo.postValue(responseRepoList)
     }
 
     fun filterOnlyGithubRepos() {
