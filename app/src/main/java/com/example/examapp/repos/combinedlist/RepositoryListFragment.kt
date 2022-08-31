@@ -82,7 +82,7 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
 
             layoutSwipeRefresh.setOnRefreshListener {
                 viewLifecycleOwner.lifecycleScope.launch {
-                    viewModel.reloadRepos()
+                    viewModel.onListRefreshed()
                     layoutSwipeRefresh.isRefreshing = false
                 }
             }
@@ -90,36 +90,36 @@ class RepositoryListFragment : BaseFragment<FragmentRepositoryListBinding>() {
             toolbar.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.all_repos -> {
-                        viewModel.getLoadedRepos()
+                        viewModel.onAllReposClicked()
                         true
                     }
                     R.id.filter_github -> {
-                        viewModel.filterOnlyGithubRepos()
+                        viewModel.onShowGithubReposClicked()
                         true
                     }
                     R.id.filter_bitbucket -> {
-                        viewModel.filterOnlyBitbucketRepos()
+                        viewModel.onShowBitbucketReposClicked()
                         true
                     }
                     R.id.sort_alphabetically -> {
-                        viewModel.sortAlphabetically()
+                        viewModel.onSortAlphabeticallyClicked()
                         true
                     }
                     R.id.sort_revert -> {
-                        viewModel.sortRevert()
+                        viewModel.onSortRevertClicked()
                         true
                     }
                     else -> false
                 }
             }
 
-            //TODO: doesn't work correctly
-            searchQueryFlow
-                .debounce(1000)
-                .flatMapLatest { query ->
-                    viewModel.searchByQuery(query)
-                }
-                .launchIn(viewLifecycleOwner.lifecycleScope)
+            viewLifecycleOwner.lifecycleScope.launch {
+                searchQueryFlow
+                    .debounce(1000)
+                    .collectLatest { query ->
+                        viewModel.onQueryChanged(query)
+                    }
+            }
         }
     }
 }
