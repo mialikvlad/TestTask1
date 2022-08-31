@@ -9,7 +9,6 @@ import com.example.domain.usecases.GetBitbucketRepositoriesUseCase
 import com.example.domain.usecases.GetGithubRepositoriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 
@@ -46,46 +45,50 @@ class RepositoryListViewModel @Inject constructor(
         _listRepo.postValue(responseRepoList)
     }
 
-    fun filterOnlyGithubRepos() {
+    fun onShowGithubReposClicked() {
         val mutableRepoList = responseRepoList
         _listRepo.value = mutableRepoList.filter { repo ->
-            repo.webService == "Github"
+            repo.webService == GITHUB_SERVICE
         }
     }
 
-    fun filterOnlyBitbucketRepos() {
+    fun onShowBitbucketReposClicked() {
         val mutableRepoList = responseRepoList
         _listRepo.value = mutableRepoList.filter { repo ->
-            repo.webService == "Bitbucket"
+            repo.webService == BITBUCKET_SERVICE
         }
     }
 
-    fun getLoadedRepos() {
+    fun onAllReposClicked() {
         _listRepo.value = responseRepoList
     }
 
-    fun sortAlphabetically() {
+    fun onSortAlphabeticallyClicked() {
         _listRepo.value = _listRepo.value?.sortedBy { repoModel ->
             repoModel.repositoryName.first().lowercaseChar()
         }
     }
 
-    fun sortRevert() {
+    fun onSortRevertClicked() {
         _listRepo.value = _listRepo.value?.sortedByDescending { repoModel ->
             repoModel.repositoryName.first().lowercaseChar()
         }
     }
 
-    fun searchByQuery(query: String): Flow<String> {
-        _listRepo.value = _listRepo.value?.filter { repositoryModel ->
+    fun onQueryChanged(query: String) {
+        _listRepo.value = responseRepoList.filter { repositoryModel ->
             repositoryModel.ownerName.lowercase(Locale.ROOT).contains(query) ||
                     repositoryModel.repositoryName.lowercase(Locale.ROOT).contains(query) ||
                     repositoryModel.webService.lowercase(Locale.ROOT).contains(query)
         }
-        return flow { }
     }
 
-    suspend fun reloadRepos() {
+    suspend fun onListRefreshed() {
         initRepos()
+    }
+
+    companion object {
+        private const val GITHUB_SERVICE = "Github"
+        private const val BITBUCKET_SERVICE = "Bitbucket"
     }
 }

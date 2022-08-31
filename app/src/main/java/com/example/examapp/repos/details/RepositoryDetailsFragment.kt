@@ -22,18 +22,37 @@ class RepositoryDetailsFragment : BaseFragment<FragmentRepositoryDetailsBinding>
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             toolbar.setupWithNavController(findNavController())
-            ownerImage.load(viewModel.getAvatarUrl()) {
-                scale(Scale.FIT)
-                size(ViewSizeResolver(root))
+
+            viewModel.ownerNameState.observe(viewLifecycleOwner) { ownerName ->
+                textName.text = ownerName
             }
-            webserviceImage.setImageResource(
-                if (viewModel.getWebService() == "Github") R.drawable.ic_iconmonstr_github
-                else R.drawable.ic_bitbucket_icon
-            )
-            textName.text = viewModel.getOwnerName()
-            textRepository.text = viewModel.getRepoName()
-            textWebservice.text = viewModel.getWebService()
-            textDescription.text = viewModel.getDescription()
+
+            viewModel.repoNameState.observe(viewLifecycleOwner) { repoName ->
+                textRepository.text = repoName
+            }
+
+            viewModel.webServiceState.observe(viewLifecycleOwner) { webService ->
+                textWebservice.text = webService
+                webserviceImage.setImageResource(
+                    if (webService == GITHUB_SERVICE) R.drawable.ic_iconmonstr_github
+                    else R.drawable.ic_bitbucket_icon
+                )
+            }
+
+            viewModel.avatarUrlState.observe(viewLifecycleOwner) { avatarUrl ->
+                ownerImage.load(avatarUrl) {
+                    scale(Scale.FIT)
+                    size(ViewSizeResolver(root))
+                }
+            }
+
+            viewModel.descriptionState.observe(viewLifecycleOwner) { description ->
+                textDescription.text = description
+            }
         }
+    }
+
+    companion object {
+        private const val GITHUB_SERVICE = "Github"
     }
 }
