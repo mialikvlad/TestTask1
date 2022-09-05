@@ -1,7 +1,7 @@
 # TestTask Uladzislau Mialik
 
-1. Network Layer.
-Есть 2 раздельных запроса:
+## 1. Network Layer.
+### Есть 2 раздельных запроса:
 a. Bitbucket
 b. Github
 Требуется поддержать возможность выполнения обоих запросов параллельно.
