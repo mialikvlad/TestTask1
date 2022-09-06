@@ -1,4 +1,4 @@
-# TestTask Uladzislau Mialik
+# TestTask Uladzislau Mialik (limit: 2 days)
 
 ## 1. Network Layer.
 #### Есть 2 раздельных запроса:
